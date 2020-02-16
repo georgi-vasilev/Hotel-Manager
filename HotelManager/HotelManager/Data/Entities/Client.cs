@@ -1,8 +1,15 @@
-﻿namespace HotelManager.Data.Entities
+﻿using System;
+
+namespace HotelManager.Data.Entities
 {
     public class Client
     {
-        public int ClientsId { get; set; }
+        public Client()
+        {
+            this.ClientId = Guid.NewGuid().ToString();
+        }
+
+        public string ClientId { get; set; }
 
         public string FirstName { get; set; }
 

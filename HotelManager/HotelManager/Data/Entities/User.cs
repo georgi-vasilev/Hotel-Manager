@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HotelManager.Data.Entities;
 
 namespace HotelManager.Data.Entities
 {
@@ -11,7 +8,10 @@ namespace HotelManager.Data.Entities
         public User()
         {
             this.ClientReservation = new HashSet<Reservation>();
+            this.UserId = Guid.NewGuid().ToString();
         }
+
+        public string UserId { get; private set; }
 
         public string Username { get; set; }
 

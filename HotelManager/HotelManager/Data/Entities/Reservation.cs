@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HotelManager.Data.Entities
 {
     public class Reservation
     {
-        public int ReservedRoomId { get; set; }
+        public Reservation()
+        {
+            this.ReservedRooms = new HashSet<Room>();
+            this.ReservationId = Guid.NewGuid().ToString();
+            this.Guests = new HashSet<Client>();
+        }
 
-        public int ClientReservator { get; set; }
+        public string ReservationId { get; private set; }
+
+        public virtual ICollection<Room> ReservedRooms{ get; set; }
+
+        public User UserReservator { get; set; }
+        
+        public virtual ICollection<Client> Guests { get; set; }
 
         public DateTime CheckIn { get; set; }
 

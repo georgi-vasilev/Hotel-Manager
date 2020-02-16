@@ -1,14 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace HotelManager.Data.Entities
 {
     public class Room
     {
-        public int RoomId { get; set; }
+        public Room()
+        {
+            this.RoomId = Guid.NewGuid().ToString();
+        }
+
+        public string RoomId { get; set; }
 
         public int Capacity { get; set; }
 
-        public List<string> RoomType { get; set; }
+        public string RoomType { get; set; }
 
         public double PricePerAdult { get; set; }
 
