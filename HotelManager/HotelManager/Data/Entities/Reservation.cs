@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HotelManager.Data.Entities
 {
-    public class Rooms
+    public class Reservation
     {
     }
 }
