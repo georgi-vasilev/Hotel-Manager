@@ -28,6 +28,6 @@ namespace HotelManager.Data.Entities
 
         public bool AllInclusive { get; set; }
 
-        public decimal Bills { get; set; }
+        public double Bills { get; set; }
     }
 }
