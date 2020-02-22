@@ -84,7 +84,7 @@ namespace HotelManager.Services
 
 
 
-            if (this.userManager.Users.Count() == 1)
+            if (model.Admin == true)
             {
                 addRoleResult = await this.userManager.AddToRoleAsync(user, "Admin");
             }

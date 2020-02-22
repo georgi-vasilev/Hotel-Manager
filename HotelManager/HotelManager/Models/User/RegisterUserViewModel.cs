@@ -55,9 +55,6 @@ namespace HotelManager.Models.User
         [DataType(DataType.Date)]
         public DateTime DateOfDismissal { get; set; }
 
-        // not sure if this is the correct data type for bool data type
-        [Required]
-        //[DataType(DataType.Custom)]
         public bool Admin { get; set; }
 
 
