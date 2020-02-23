@@ -26,9 +26,7 @@
 
 
   <ItemGroup>
-    <Folder Include="Models\Client\" />
     <Folder Include="Models\Room\" />
-    <Folder Include="Models\Reservation\" />
   </ItemGroup>
 
 </Project>
