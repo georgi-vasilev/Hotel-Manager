@@ -10,6 +10,7 @@ namespace HotelManager.Data.Entities
         {
             this.ClientReservation = new HashSet<Reservation>();
         }
+
         public string FirstName { get; set; }
 
         public string FathersName { get; set; }
