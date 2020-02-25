@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HotelManager.Data.Entities;
+using AutoMapper;
+using HotelManager.Services.Mappings;
 
 namespace HotelManager
 {
@@ -24,8 +26,12 @@ namespace HotelManager
             services.AddDbContext<HotelManagerDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<HotelManagerDbContext>();
+
+            services.AddAutoMapper(typeof(MappingProfile).Assembly);
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
