@@ -2,13 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using HotelManager.Common;
-using HotelManager.Data;
-using HotelManager.Data.Seeding;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JudgeSystem.Data.Seeding
+namespace HotelManager.Data.Seeding
 {
     internal class RolesSeeder : ISeeder
     {

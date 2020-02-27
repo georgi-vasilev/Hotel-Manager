@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using HotelManager.Data;
-using HotelManager.Data.Seeding;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace JudgeSystem.Data.Seeding
+namespace HotelManager.Data.Seeding
 {
     public class ApplicationDbContextSeeder : ISeeder
     {

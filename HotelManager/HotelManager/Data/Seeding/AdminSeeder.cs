@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using HotelManager.Common;
-using HotelManager.Data;
 using HotelManager.Data.Entities;
-using HotelManager.Data.Seeding;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JudgeSystem.Data.Seeding
+namespace HotelManager.Data.Seeding
 {
 	public class AdminSeeder : ISeeder
 	{

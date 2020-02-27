@@ -1,4 +1,4 @@
-﻿namespace JudgeSystem.Web.Areas.Identity.Pages
+﻿namespace HotelManager.Areas.Identity.Pages
 {
     public static class IdentityAreaConstants
     {

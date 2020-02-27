@@ -1,9 +1,9 @@
-﻿using HotelManager.Data;
+﻿using AutoMapper;
+using HotelManager.Data;
 using HotelManager.Data.Entities;
 using HotelManager.Models.User;
 using HotelManager.Services.Contracts;
 using Microsoft.AspNetCore.Identity;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HotelManager.Services
@@ -13,12 +13,14 @@ namespace HotelManager.Services
         private readonly SignInManager<User> singInManager;
         private readonly UserManager<User> userManager;
         private readonly HotelManagerDbContext dbContext;
+        private readonly IMapper mapper;
 
         public UserService(SignInManager<User> singInManager, UserManager<User> userManager, HotelManagerDbContext dbContext)
         {
             this.singInManager = singInManager;
             this.userManager = userManager;
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         public async Task<bool> Login(LoginUserViewModel model)

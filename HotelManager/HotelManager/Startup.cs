@@ -8,10 +8,7 @@ using Microsoft.Extensions.Hosting;
 using HotelManager.Data.Entities;
 using AutoMapper;
 using HotelManager.Services.Mappings;
-using System.Linq;
-using HotelManager.Common;
-using Microsoft.AspNetCore.Identity;
-using JudgeSystem.Data.Seeding;
+using HotelManager.Data.Seeding;
 
 namespace HotelManager
 {
