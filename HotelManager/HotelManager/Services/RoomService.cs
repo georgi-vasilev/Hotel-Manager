@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace HotelManager.Services.Contracts
 {
-    public class RoomService
+    public class RoomService : IRoomService
     {
         private readonly HotelManagerDbContext context;
 
@@ -20,7 +20,7 @@ namespace HotelManager.Services.Contracts
             IEnumerable<RoomViewModel> rooms = context.Rooms
                 .Select(x => new RoomViewModel()
                 {
-                    RoomId = x.RoomId,
+                    Id = x.Id,
                     Capacity = x.Capacity,
                     RoomType=x.RoomType,
                     PricePerAdult=x.PricePerAdult,
@@ -55,7 +55,7 @@ namespace HotelManager.Services.Contracts
 
         public void Edit(RoomEditModel model)
         {
-            Room room = context.Rooms.Find(model.RoomId);
+            Room room = context.Rooms.Find(model.Id);
             room.Capacity = model.Capacity;
             room.RoomType = model.RoomType;
             room.PricePerAdult = model.PricePerAdult;

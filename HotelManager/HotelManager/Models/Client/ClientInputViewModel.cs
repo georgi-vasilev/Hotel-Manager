@@ -1,16 +1,7 @@
-﻿using System;
-
-namespace HotelManager.Data.Entities
+﻿namespace HotelManager.Models.Client
 {
-    public class Client
+    public class ClientInputViewModel
     {
-        public Client()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
-
-        public string Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string Surname { get; set; }

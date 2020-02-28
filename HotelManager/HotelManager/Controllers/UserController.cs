@@ -10,11 +10,13 @@ namespace HotelManager.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
-
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly IUserService userService;
+        
+        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IUserService userService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.userService = userService;
         }
 
         public IActionResult Index()
@@ -22,8 +24,7 @@ namespace HotelManager.Controllers
             return View();
         }
 
-        private readonly IUserService userService;
-
+       
         [HttpGet]
         public IActionResult Register()
         {

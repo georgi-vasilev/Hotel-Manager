@@ -9,6 +9,9 @@ using HotelManager.Data.Entities;
 using AutoMapper;
 using HotelManager.Services.Mappings;
 using HotelManager.Data.Seeding;
+using Microsoft.AspNetCore.Identity;
+using HotelManager.Services.Contracts;
+using HotelManager.Services;
 
 namespace HotelManager
 {
@@ -28,13 +31,30 @@ namespace HotelManager
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<HotelManagerDbContext>();
+            //services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<HotelManagerDbContext>();
 
-            services.AddAutoMapper(typeof(MappingProfile).Assembly);
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 1;
+            })
+               .AddDefaultUI()
+               .AddDefaultTokenProviders()
+               .AddEntityFrameworkStores<HotelManagerDbContext>();
+
+            services.AddAutoMapper(typeof(MappingProfile).Assembly);            
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoomService, RoomService>();
+            services.AddTransient<IReservationService, ReservationService>();
+            services.AddTransient<IClientService, ClientService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

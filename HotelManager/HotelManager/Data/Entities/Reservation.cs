@@ -8,11 +8,11 @@ namespace HotelManager.Data.Entities
         public Reservation()
         {
             this.ReservedRooms = new HashSet<Room>();
-            this.ReservationId = Guid.NewGuid().ToString();
+            this.Id = Guid.NewGuid().ToString();
             this.Guests = new HashSet<Client>();
         }
 
-        public string ReservationId { get; private set; }
+        public string Id { get; private set; }
 
         public virtual ICollection<Room> ReservedRooms{ get; set; }
 

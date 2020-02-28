@@ -102,8 +102,6 @@ namespace HotelManager.Services
             return true;
         }
 
-
-
         public async Task<User> GetUser(string username)
         {
             var user = await this.userManager.FindByNameAsync(username);

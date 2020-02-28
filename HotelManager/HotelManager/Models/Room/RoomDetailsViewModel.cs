@@ -2,7 +2,7 @@
 {
     public class RoomDetailsViewModel
     {
-        public string RoomId { get; set; }
+        public string Id { get; set; }
 
         public int Capacity { get; set; }
 

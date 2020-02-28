@@ -7,10 +7,10 @@ namespace HotelManager.Data.Entities
     {
         public Room()
         {
-            this.RoomId = Guid.NewGuid().ToString();
+            this.Id = Guid.NewGuid().ToString();
         }
 
-        public string RoomId { get; set; }
+        public string Id { get; set; }
 
         public int Capacity { get; set; }
 

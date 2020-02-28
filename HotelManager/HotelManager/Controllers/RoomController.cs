@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using HotelManager.Data;
-using HotelManager.Data.Entities;
+﻿using HotelManager.Data.Entities;
 using HotelManager.Models.Room;
 using HotelManager.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -10,34 +8,19 @@ namespace HotelManager.Controllers
     public class RoomController : Controller
     {
         private readonly IRoomService service;
-        //private readonly HotelManagerDbContext context;
-        //private readonly IMapper mapper;
-
-        // public RoomController(IRoomService service,HotelManagerDbContext context, IMapper mapper)
-        // {
-        //     this.service = service;
-        //     this.context = context;
-        //     this.mapper = mapper;
-        // }
 
         public RoomController(IRoomService service)
         {
             this.service = service;
         }
-        //public RoomViewModel GetById(string id)
-        //{
-        //    Room room = context.Rooms.Find(id);
-        //
-        //    RoomViewModel model = mapper.Map<RoomViewModel>(room);
-        //    return model;
-        //}
+
         public IActionResult ShowDetails(int id)
         {
             Room room = service.GetById(id);
 
             RoomDetailsViewModel model = new RoomDetailsViewModel
             {
-                RoomId = room.RoomId,
+                Id = room.Id,
                 Capacity = room.Capacity,
                 RoomType = room.RoomType,
                 PricePerAdult = room.PricePerAdult,
@@ -66,7 +49,7 @@ namespace HotelManager.Controllers
             Room room = service.GetById(id);
             RoomEditModel model = new RoomEditModel
             {
-                RoomId = room.RoomId,
+                Id = room.Id,
                 Capacity = room.Capacity,
                 RoomType = room.RoomType,
                 PricePerAdult = room.PricePerAdult,
@@ -81,6 +64,7 @@ namespace HotelManager.Controllers
         public IActionResult Edit(RoomEditModel model)
         {
             service.Edit(model);
+
             return Redirect("/");
         }
 
@@ -89,7 +73,7 @@ namespace HotelManager.Controllers
             Room room = service.GetById(id);
             RoomDetailsViewModel model = new RoomDetailsViewModel
             {
-                RoomId = room.RoomId,
+                Id = room.Id,
                 Capacity = room.Capacity,
                 RoomType = room.RoomType,
                 PricePerAdult = room.PricePerAdult,
