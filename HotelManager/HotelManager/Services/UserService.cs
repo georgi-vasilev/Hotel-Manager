@@ -10,6 +10,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using HotelManager.Common;
 
 namespace HotelManager.Services
 {
@@ -92,11 +93,11 @@ namespace HotelManager.Services
 
             if (model.Admin == true)
             {
-                addRoleResult = await this.userManager.AddToRoleAsync(user, "Admin");
+                addRoleResult = await this.userManager.AddToRoleAsync(user, GlobalConstants.AdminRole);
             }
             else
             {
-                addRoleResult = await this.userManager.AddToRoleAsync(user, "User");
+                addRoleResult = await this.userManager.AddToRoleAsync(user, GlobalConstants.UserRole);
             }
 
             if (!addRoleResult.Succeeded)

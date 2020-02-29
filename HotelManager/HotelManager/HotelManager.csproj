@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\" />
+    <Folder Include="Views\Client\" />
   </ItemGroup>
 
 </Project>

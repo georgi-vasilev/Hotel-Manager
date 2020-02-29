@@ -52,11 +52,12 @@ namespace HotelManager.Initialisation
                     };
 
                     var userManager = serviceScope.ServiceProvider.GetService<UserManager<User>>();
+
                     string pass = "Admin";
                     Task.Run(async () =>
                     {
                         await userManager.CreateAsync(user, pass);
-                        await userManager.AddToRoleAsync(user, "Admin");
+                        await userManager.AddToRoleAsync(user, GlobalConstants.AdminRole);
                     }).Wait();
                 }
             }

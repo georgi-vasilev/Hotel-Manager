@@ -5,6 +5,10 @@ using HotelManager.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using HotelManager.Models.User;
+using HotelManager.Models.Client;
+using HotelManager.Models.Room;
+using HotelManager.Models.Reservation;
 
 namespace HotelManager.Data
 {
@@ -41,5 +45,17 @@ namespace HotelManager.Data
 
             base.OnModelCreating(builder);
         }
+
+        public DbSet<HotelManager.Models.User.DetailsUserViewModel> DetailsUserViewModel { get; set; }
+
+        public DbSet<HotelManager.Models.Client.ClientInputViewModel> ClientInputViewModel { get; set; }
+
+        public DbSet<HotelManager.Models.Room.RoomInputModel> RoomInputModel { get; set; }
+
+        public DbSet<HotelManager.Models.Room.RoomEditModel> RoomEditModel { get; set; }
+
+        public DbSet<HotelManager.Models.Room.RoomDetailsViewModel> RoomDetailsViewModel { get; set; }
+
+        public DbSet<HotelManager.Models.Reservation.ReservationInputModel> ReservationInputModel { get; set; }
     }
 }

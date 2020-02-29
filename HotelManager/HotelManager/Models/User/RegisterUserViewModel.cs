@@ -51,7 +51,6 @@ namespace HotelManager.Models.User
         //[DataType(DataType.Custom)]
         public bool ActiveOrNotActiveAccount { get; set; }
 
-        [Required]
         [DataType(DataType.Date)]
         public DateTime DateOfDismissal { get; set; }
 

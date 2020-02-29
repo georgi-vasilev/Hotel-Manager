@@ -13,6 +13,10 @@ namespace HotelManager.Controllers
         {
             this.service = service;
         }
+        public IActionResult All()
+        {
+            return View();
+        }
 
         public IActionResult ShowDetails(int id)
         {

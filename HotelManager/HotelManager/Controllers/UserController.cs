@@ -120,5 +120,6 @@ namespace HotelManager.Controllers
 
             return Redirect("/User");
         }
+
     }
 }
