@@ -1,15 +1,10 @@
-﻿using System;
+﻿using HotelManager.Data.Entities;
 using System.Collections.Generic;
 
-namespace HotelManager.Data.Entities
+namespace HotelManager.Models.Client
 {
-    public class Client
+    public class ClientViewModel
     {
-        public Client()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
-
         public string Id { get; set; }
 
         public string FirstName { get; set; }

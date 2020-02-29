@@ -1,0 +1,79 @@
+﻿@using HotelManager.Models.User
+@model RegisterUserViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1 class="text-center">Register</h1>
+<hr class="bg-secondary half-width" />
+<form class="mx-auto half-width" method="post" asp-controller="User" asp-action="Register">
+    <div class="form-group">
+        <label asp-for="Username">Username</label>
+        <input asp-for="Username" class="form-control" placeholder="Username...">
+        <span asp-validation-for="Username"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password">Password</label>
+        <input asp-for="Password" class="form-control" placeholder="Password...">
+         <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ConfirmPassword">Confirm Password</label>
+        <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password...">
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input asp-for="FirstName" class="form-control" placeholder="First Name...">
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="FathersName">Fathers Name</label>
+        <input asp-for="FathersName" class="form-control" placeholder="Fathers Name...">
+        <span asp-validation-for="FathersName" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname">Fathers Name</label>
+        <input asp-for="Surname" class="form-control" placeholder="Last Name...">
+        <span asp-validation-for="Surname" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="PersonalNumber">Personal Number</label>
+        <input asp-for="PersonalNumber" class="form-control" placeholder="Personal Number...">
+        <span asp-validation-for="PersonalNumber" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber">Phone Number</label>
+        <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number...">
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" placeholder="Email...">
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="DateOfAppointment">Date of appointment</label>
+        <input asp-for="DateOfAppointment" class="form-control">
+        <span asp-validation-for="DateOfAppointment" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="ActiveOrNotActiveAccount">Is the user active</label>
+        <input asp-for="ActiveOrNotActiveAccount" class="form-control">
+
+    </div>
+
+
+    <div class="button-holder d-flex justify-content-center">
+        <button type="submit" class="btn chushka-bg-color">Register</button>
+    </div>
+</form>
+

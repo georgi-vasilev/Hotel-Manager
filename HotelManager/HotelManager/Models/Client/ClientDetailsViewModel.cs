@@ -1,15 +1,10 @@
-﻿using System;
+﻿using HotelManager.Data.Entities;
 using System.Collections.Generic;
 
-namespace HotelManager.Data.Entities
+namespace HotelManager.Models.Client
 {
-    public class Client
+    public class ClientDetailsViewModel
     {
-        public Client()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
-
         public string Id { get; set; }
 
         public string FirstName { get; set; }
@@ -23,5 +18,6 @@ namespace HotelManager.Data.Entities
         public bool Adult { get; set; }
 
         public virtual ICollection<ClientReservation> ClientReservations { get; set; }
+
     }
 }

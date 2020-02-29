@@ -1,15 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
-namespace HotelManager.Data.Entities
+namespace HotelManager.Models.User
 {
-    public class User : IdentityUser
+    public class DetailsUserViewModel
     {
-        public User()
-        {
-            this.ClientReservation = new HashSet<Reservation>();
-        }
+        public string Id { get; set; }
+
+        public string Username { get; set; }
 
         public string FirstName { get; set; }
 
@@ -27,7 +24,5 @@ namespace HotelManager.Data.Entities
 
         public bool Admin { get; set; }
 
-        public virtual ICollection<Reservation> ClientReservation { get; set; }
     }
 }
-

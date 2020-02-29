@@ -1,0 +1,69 @@
+﻿@using HotelManager.Models.User
+@model IEnumerable<DetailsUserViewModel>
+
+@{
+    ViewData["Title"] = "All Rooms";
+}
+
+<div>
+    @if (!Model.Any())
+    {
+        <hr class="bg-info cm-hr" />
+        <div class="text-secondary font-size-30 text-center mt-4">There are no flights in the system!</div>
+        <hr class="bg-info cm-hr" />
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr class="row">
+                    <th class="col-md-2">Plane number</th>
+                    <th class="col-md-2">Origin</th>
+                    <th class="col-md-2">Destination</th>
+                    <th class="col-md-2">Take off time</th>
+                    <th class="col-md-1">Duration</th>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th class="col-md-3">Actions</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr class="row">
+                        <td class="col-md-2">
+                            <a class="text-dark"
+                               asp-controller="Room"
+                               asp-action="Details"
+                               asp-route-id="@user.Id">
+                                @user.FirstName
+                            </a>
+                        </td>
+                        <td class="col-md-2">@user.FathersName</td>
+                        <td class="col-md-2">@user.Surname</td>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td class="col-md-3">
+                                <a class="btn btn-outline-primary mx-3"
+                                   asp-controller="Room"
+                                   asp-action="Edit"
+                                   asp-route-id="@user.Id">
+                                    Edit
+                                </a>
+                                <a class="btn btn-outline-danger"
+                                   asp-controller="Room"
+                                   asp-action="Delete"
+                                   asp-route-id="@user.Id">
+                                    Delete
+                                </a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
