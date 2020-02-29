@@ -1,21 +1,14 @@
-﻿using System;
+﻿using HotelManager.Data.Entities;
+using System;
 using System.Collections.Generic;
 
-namespace HotelManager.Data.Entities
+namespace HotelManager.Models.Reservation
 {
-    public class Reservation
+    public class ReservationInputModel
     {
-        public Reservation()
-        {
-            this.Id = Guid.NewGuid().ToString();
-            this.ClientReservations = new HashSet<ClientReservation>();
-        }
-
         public string RoomId { get; set; }
-        public Room Room { get; set; }
 
         public string UserId { get; set; }
-        public virtual User Employee { get; set; }
 
         public string Id { get; set; }
 

@@ -27,6 +27,7 @@ namespace HotelManager.Services
                     PhoneNumber = x.PhoneNumber,
                     Email = x.Email,
                     Adult = x.Adult,
+                    ClientReservations = x.ClientReservations,
                 }).ToList();
 
             return clients;

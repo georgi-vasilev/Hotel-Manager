@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 
 namespace HotelManager.Areas.Identity.Pages.Account
 {
-    [Authorize(Roles = GlobalConstants.Roles.Administrator)]
+    [Authorize(Roles = GlobalConstants.AdminRole)]
     public class RegisterModel : PageModel
     {
         private const string EmailConfirmationUrl = "/Account/ConfirmEmail";
@@ -61,7 +61,7 @@ namespace HotelManager.Areas.Identity.Pages.Account
                 {
                     logger.LogInformation("User created a new account with password.");
 
-                    await userManager.AddToRoleAsync(user, GlobalConstants.Roles.Employee);
+                    await userManager.AddToRoleAsync(user, GlobalConstants.UserRole);
                     return LocalRedirect(returnUrl);
                 }
 

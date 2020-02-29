@@ -26,6 +26,7 @@ namespace HotelManager.Controllers
                 PhoneNumber = client.PhoneNumber,
                 Email = client.Email,
                 Adult = client.Adult,
+                ClientReservations = client.ClientReservations,
             };
 
             return View(model);
@@ -79,6 +80,7 @@ namespace HotelManager.Controllers
                 PhoneNumber = client.PhoneNumber,
                 Email = client.Email,
                 Adult = client.Adult,
+                ClientReservations = client.ClientReservations,
             };
 
             return View(model);

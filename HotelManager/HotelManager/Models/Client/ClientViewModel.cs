@@ -1,4 +1,7 @@
-﻿namespace HotelManager.Models.Client
+﻿using HotelManager.Data.Entities;
+using System.Collections.Generic;
+
+namespace HotelManager.Models.Client
 {
     public class ClientViewModel
     {
@@ -13,5 +16,7 @@
         public string Email { get; set; }
 
         public bool Adult { get; set; }
+
+        public virtual ICollection<ClientReservation> ClientReservations { get; set; }
     }
 }

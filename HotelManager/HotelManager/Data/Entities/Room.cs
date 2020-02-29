@@ -8,6 +8,7 @@ namespace HotelManager.Data.Entities
         public Room()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.RoomReservations = new HashSet<Reservation>();
         }
 
         public string Id { get; set; }
@@ -21,5 +22,7 @@ namespace HotelManager.Data.Entities
         public double PricePerKid { get; set; }
 
         public int RoomNumber { get; set; }
+
+        public virtual ICollection<Reservation> RoomReservations { get; set; }
     }
 }

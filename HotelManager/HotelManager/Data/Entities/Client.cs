@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HotelManager.Data.Entities
 {
@@ -20,5 +21,7 @@ namespace HotelManager.Data.Entities
         public string Email { get; set; }
 
         public bool Adult { get; set; }
+
+        public virtual ICollection<ClientReservation> ClientReservations { get; set; }
     }
 }

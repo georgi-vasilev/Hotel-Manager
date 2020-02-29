@@ -8,10 +8,10 @@ using Microsoft.Extensions.Hosting;
 using HotelManager.Data.Entities;
 using AutoMapper;
 using HotelManager.Services.Mappings;
-using HotelManager.Data.Seeding;
 using Microsoft.AspNetCore.Identity;
 using HotelManager.Services.Contracts;
 using HotelManager.Services;
+using HotelManager.Initialisation;
 
 namespace HotelManager
 {
@@ -60,17 +60,7 @@ namespace HotelManager
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            using (IServiceScope serviceScope = app.ApplicationServices.CreateScope())
-            {
-                var dbContext = serviceScope.ServiceProvider.GetRequiredService<HotelManagerDbContext>();
-
-                if (env.IsDevelopment())
-                {
-                    dbContext.Database.Migrate();
-                }
-
-                new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
-            }
+            app.UseDatabaseMigration();
 
             if (env.IsDevelopment())
             {
