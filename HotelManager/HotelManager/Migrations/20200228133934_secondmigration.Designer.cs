@@ -4,14 +4,16 @@ using HotelManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace HotelManager.Data.Migrations
+namespace HotelManager.Migrations
 {
     [DbContext(typeof(HotelManagerDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200228133934_secondmigration")]
+    partial class secondmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,27 +38,17 @@ namespace HotelManager.Data.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ReservationId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("HotelManager.Data.Entities.ClientReservation", b =>
-                {
-                    b.Property<string>("ClientId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ReservationId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("ClientId", "ReservationId");
-
                     b.HasIndex("ReservationId");
 
-                    b.ToTable("ClientReservations");
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("HotelManager.Data.Entities.Reservation", b =>
@@ -79,17 +71,12 @@ namespace HotelManager.Data.Migrations
                     b.Property<bool>("IncludeBreakfast")
                         .HasColumnType("bit");
 
-                    b.Property<string>("RoomId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId")
+                    b.Property<string>("UserReservatorId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoomId");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserReservatorId");
 
                     b.ToTable("Reservations");
                 });
@@ -108,6 +95,9 @@ namespace HotelManager.Data.Migrations
                     b.Property<double>("PricePerKid")
                         .HasColumnType("float");
 
+                    b.Property<string>("ReservationId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
@@ -115,6 +105,8 @@ namespace HotelManager.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ReservationId");
 
                     b.ToTable("Rooms");
                 });
@@ -352,30 +344,25 @@ namespace HotelManager.Data.Migrations
                     b.HasDiscriminator().HasValue("User");
                 });
 
-            modelBuilder.Entity("HotelManager.Data.Entities.ClientReservation", b =>
+            modelBuilder.Entity("HotelManager.Data.Entities.Client", b =>
                 {
-                    b.HasOne("HotelManager.Data.Entities.Client", "Client")
-                        .WithMany("ClientReservations")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HotelManager.Data.Entities.Reservation", "Reservation")
-                        .WithMany("ClientReservations")
-                        .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("HotelManager.Data.Entities.Reservation", null)
+                        .WithMany("Guests")
+                        .HasForeignKey("ReservationId");
                 });
 
             modelBuilder.Entity("HotelManager.Data.Entities.Reservation", b =>
                 {
-                    b.HasOne("HotelManager.Data.Entities.Room", "Room")
-                        .WithMany("RoomReservations")
-                        .HasForeignKey("RoomId");
-
-                    b.HasOne("HotelManager.Data.Entities.User", "Employee")
+                    b.HasOne("HotelManager.Data.Entities.User", "UserReservator")
                         .WithMany("ClientReservation")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserReservatorId");
+                });
+
+            modelBuilder.Entity("HotelManager.Data.Entities.Room", b =>
+                {
+                    b.HasOne("HotelManager.Data.Entities.Reservation", null)
+                        .WithMany("ReservedRooms")
+                        .HasForeignKey("ReservationId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
