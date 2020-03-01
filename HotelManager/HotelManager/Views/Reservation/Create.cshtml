@@ -1,0 +1,109 @@
+﻿@model HotelManager.Models.Reservation.ReservationInputModel
+
+@{
+    ViewData["Title"] = "Create";
+    var rooms = (IEnumerable<RoomViewModel>)ViewData["Rooms"];
+}
+
+<h1>Create</h1>
+
+<h4>Add reservation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoomId" class="control-label"></label>
+                <select asp-for="RoomId" class="form-control">
+                    @foreach (var room in rooms)
+                    {
+                        <option value="@room.Id">@room.RoomNumber</option>
+                    }
+
+                </select>
+                <span asp-validation-for="RoomId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckIn" class="control-label"></label>
+                <input asp-for="CheckIn" class="form-control" />
+                <span asp-validation-for="CheckIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckOut" class="control-label"></label>
+                <input asp-for="CheckOut" class="form-control" />
+                <span asp-validation-for="CheckOut" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IncludeBreakfast" /> @Html.DisplayNameFor(model => model.IncludeBreakfast)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AllInclusive" /> @Html.DisplayNameFor(model => model.AllInclusive)
+                </label>
+            </div>
+            <h4>Clients</h4>
+            <div id="clients">
+                @for (int i = 0; i < Model.Clients.Count; i++)
+                {
+                    <div class="client">
+                        <hr />
+                        <h5>Client 1</h5>
+                        <div class="d-flex justify-content-between">
+                            <div class="form-group w-50 mr-2">
+                                <label asp-for="Clients[i].FirstName"></label>
+                                <input asp-for="Clients[i].FirstName" class="form-control" />
+                                <span asp-validation-for="Clients[i].FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group w-50 ml-2">
+                                <label asp-for="Clients[i].Surname"></label>
+                                <input asp-for="Clients[i].Surname" class="form-control" />
+                                <span asp-validation-for="Clients[i].Surname" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="form-group w-50 mr-2">
+                                <label asp-for="Clients[i].Email"></label>
+                                <input asp-for="Clients[i].Email" class="form-control" />
+                                <span asp-validation-for="Clients[i].Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group w-50 ml-2">
+                                <label asp-for="Clients[i].PhoneNumber">Phone number</label>
+                                <input asp-for="Clients[i].PhoneNumber" class="form-control" />
+                                <span asp-validation-for="Clients[i].PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group w-50 ml-2">
+                            <label asp-for="Clients[i].Adult">Adult</label>
+                            <input asp-for="Clients[i].Adult" class="form-control" />
+                            <span asp-validation-for="Clients[i].Adult" class="text-danger"></span>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <button type="button" id="add-clint-btn">Add client</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        let index = Number.parseInt('@Model.Clients.Count');
+        let html = $($(".client")[0]).html();
+        $('#add-clint-btn').on('click', () => {
+            newHtml = html.split(`Clients_0__`).join(`Clients_${index}__`);
+            newHtml = newHtml.split(`Clients[0]`).join(`Clients[${index}]`);
+            newHtml = newHtml.split(`Client 1`).join(`Client ${index + 1}`);
+
+            $('#clients').append(newHtml);
+            index++;
+        })
+    </script>
+}

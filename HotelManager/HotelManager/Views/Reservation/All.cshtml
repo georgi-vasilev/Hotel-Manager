@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ReservationViewModel>
+
+@{
+    ViewData["Title"] = "All reservations";
+}
+
+<div>
+    @if (!Model.Any())
+    {
+        <hr class="bg-info cm-hr" />
+        <div class="text-secondary font-size-30 text-center mt-4">There are no reservations!</div>
+        <hr class="bg-info cm-hr" />
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr class="row">
+                    <th class="col-md-1">User</th>
+                    <th class="col-md-1">Room number</th>
+                    <th class="col-md-2">Check in</th>
+                    <th class="col-md-2">Check out</th>
+                    <th class="col-md-2">Bills</th>
+                    <th class="col-md-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reservation in Model)
+                {
+                    <tr class="row">
+                        <td class="col-md-1">@reservation.User.UserName</td>
+                        <td class="col-md-1">@reservation.Room.RoomNumber</td>
+                        <td class="col-md-2">@reservation.CheckIn.ToString(LongDateFormat)</td>
+                        <td class="col-md-2">@reservation.CheckOut.ToString(LongDateFormat)</td>
+                        <td class="col-md-2">@reservation.Bills</td>
+                        <td class="col-md-2">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a class="btn btn-outline-primary mx-3"
+                                   asp-controller="Reservation"
+                                   asp-action="Edit"
+                                   asp-route-id="@reservation.Id">
+                                    Edit
+                                </a>
+                                <a class="btn btn-outline-danger"
+                                   asp-controller="Reservation"
+                                   asp-action="Delete"
+                                   asp-route-id="@reservation.Id">
+                                    Delete
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

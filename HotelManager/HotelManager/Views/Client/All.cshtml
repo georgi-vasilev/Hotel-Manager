@@ -1,0 +1,66 @@
+﻿@using HotelManager.Models.Client
+@model IEnumerable<ClientViewModel>
+
+@{
+    ViewData["Title"] = "All Rooms";
+}
+
+<div>
+    @if (!Model.Any())
+    {
+        <hr class="bg-info cm-hr" />
+        <div class="text-secondary font-size-30 text-center mt-4">There are no rooms in the system!</div>
+        <hr class="bg-info cm-hr" />
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr class="row">
+                    <th class="col-md-2">First name</th>
+                    <th class="col-md-2">Surname</th>
+                    <th class="col-md-2">Phone number</th>
+                    <th class="col-md-2">Email</th>
+                    <th class="col-md-1">Adult</th>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th class="col-md-2">Actions</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var client in Model)
+                {
+                    <tr class="row">
+                        <td class="col-md-2">@client.FirstName</td>
+                        <td class="col-md-2">@client.Surname</td>
+                        <td class="col-md-2">@client.PhoneNumber</td>
+                        <td class="col-md-2">@client.Email</td>
+                        <td class="col-md-1">@client.Adult</td>
+
+
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td class="col-md-2">
+                                <a class="btn btn-outline-primary mx-2"
+                                   asp-controller="Client"
+                                   asp-action="Edit"
+                                   asp-route-id="@client.Id">
+                                    Edit
+                                </a>
+                                <a class="btn btn-outline-danger"
+                                   asp-controller="Client"
+                                   asp-action="Delete"
+                                   asp-route-id="@client.Id">
+                                    Delete
+                                </a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
